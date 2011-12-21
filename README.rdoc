@@ -6,8 +6,8 @@ RakeUI is a Rails 3.1 Engine that provides a simple web UI for your Rake tasks.
 
 == REQUIREMENTS:
 
-* node.js
-* socket.io
+* Node.js
+* Socket.io
 * Rails 3.1
 
 == INSTALL:
@@ -26,13 +26,13 @@ Start the node server:
 
 rake start_node_server
 
-Once your Rails app is started, visit /rake_ui to see your rake tasks. All STDOUT will be displayed in the browser under 'terminal output'.
+Once your Rails app is started, visit /rake_ui to see your rake tasks. All stdout will be displayed in the browser under 'terminal output'.
 
 == LICENSE:
 
 (The MIT License)
 
-Copyright (c) 2008 - 2010:
+Copyright (c) 2011:
 
 * {Richard Brant}[http://rbrant.me]
 
