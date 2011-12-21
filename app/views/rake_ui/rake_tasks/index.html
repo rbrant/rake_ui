@@ -1,0 +1,16 @@
+<script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+<script src="http://localhost:8000/socket.io/socket.io.js"></script>
+<style type="text/css" media="screen">
+  body {background:#000; color:#fff;}
+</style>
+
+<div style='width:100%'>
+  <pre id="tail"></pre>
+</div>
+
+<script type="text/javascript">
+  var socket = io.connect('http://localhost:8000');
+  socket.on('tail', function (data) {
+    $('#tail').append(data.tail);
+  }); 
+</script>

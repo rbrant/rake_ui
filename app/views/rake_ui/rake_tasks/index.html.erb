@@ -1,0 +1,48 @@
+<h1>Rake Tasks</h1>
+
+<div style='width:100%'>
+  <div style='float:left;width:35%'>
+    <%= form_for @rake_task, :as => :rake_task, :url => rake_tasks_path, :remote => true do |f| %>
+      <div>
+        <label>Select a Rake Task</label>
+        <%= f.select :id, @tasks.map{|t| [t['cmd'], t['id']]}.unshift(['-- select a task --',''])  %>
+      </div>
+
+      <div>
+        <label>Optional Arguments</label>
+        <%= f.text_area :arguments, :size => '30x4' %>
+      </div>
+      
+      <div class='actions'>
+        <%= f.submit 'run', :id => 'submit' %>
+        <span id='loading' style='display:none;'><%= image_tag 'rake_ui/ajax-loader.gif', :valign => 'middle' %>Your task is running...</span>
+      </div>
+    <% end %>
+
+    <div id='task_description'>
+      <% @tasks.each do |task| %>
+        <div id='<%= task['id'] %>' class='task_description' style='display:none;'><%= task['desc'] %></div>
+      <% end %>
+    </div>
+  </div>
+
+  <div style='float:left;width:55%'>
+    <div><strong>Terminal Output</strong></div>
+    <iframe src="http://localhost:8000" width="100%" height="600" frameborder='0'></iframe>
+  </div>
+</div>
+
+<script type="text/javascript" charset="utf-8">
+  $('#rake_task_id').change(function(){
+    $('.task_description').hide();
+    $( '#' + $(this).val() ).show();
+  });
+  
+  $('#submit').click(function(){
+    if($('#rake_task_id').val() == ''){
+      alert('Select a Rake Task');
+      return false;
+    }
+    $('#loading').show();
+  });
+</script>
